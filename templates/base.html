@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+
+	<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" integrity="sha256-8B1OaG0zT7uYA572S2xOxWACq9NXYPQ+U5kHPV1bJN4="
+	 rel="stylesheet" />
+</head>
+
+<body>
+	<!--Navigation bar-->
+	<nav aria-label="main navigation" class="navbar is-light" role="navigation">
+		<div class="navbar-brand">
+			<div class="navbar-item">
+				Recipe Finder
+			</div>
+			<div class="navbar-item">
+				<strong><a href="https://django-project-phase-5-final-version-alexanderamo.cs3080sp2021.repl.co/"> Home</a></strong> 
+        </div>
+        <div class="navbar-item">  
+          <strong><a href="https://django-project-phase-5-final-version-alexanderamo.cs3080sp2021.repl.co/recipes/searchRecipes">Search for Recipes</a></strong>
+        </div>
+        <div class="navbar-item">
+          <strong><a href="https://django-project-phase-5-final-version-alexanderamo.cs3080sp2021.repl.co/recipes"> All Recipes</a></strong> 
+        </div>
+        {% if user.is_authenticated %}
+        <div class="navbar-item">
+          <strong><a href="https://django-project-phase-5-final-version-alexanderamo.cs3080sp2021.repl.co/recipes/savedRecipes"> Saved Recipes</a></strong> 
+        </div>
+        {% endif %} 
+        {% if user.is_authenticated %}
+        <div class="navbar-item">
+          <strong><a href="https://django-project-phase-5-final-version-alexanderamo.cs3080sp2021.repl.co/recipes/addARecipe"> Add a Recipe</a></strong> 
+        </div>
+        {% endif %} 
+        <div class="navbar-item">
+          {% if user.is_authenticated %}
+            User: {{ user.get_username }}
+            <strong><a href="{% url 'logout'%}?next={{request.path}}">&nbsp Logout</a></strong>
+          {% else %}
+            <strong><a href="{% url 'login'%}?next={{request.path}}">Login</a></strong>
+          {% endif %} 
+        </div>
+        <div class="navbar-item">
+          {% if user.is_authenticated %}
+          {% else %}
+            <strong><a href="https://django-project-phase-5-final-version-alexanderamo.cs3080sp2021.repl.co/signup/">Create Account</a></strong>
+          {% endif %} 
+        </div>
+    </div>
+</nav>
+</body>
+
+<body>
+  
+{% block content %} {% endblock %}
+
+</body>
+
+</h>
